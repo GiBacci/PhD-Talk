@@ -4,6 +4,7 @@
 \usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{amsmath}
 \usetikzlibrary{shapes,arrows,positioning}
 \author{Giovanni Bacci}
 \title{Mining Microbiomes}
@@ -465,11 +466,124 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 7
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\tikzstyle{line} = [draw,thick, -latex']
+%	\begin{overlayarea}{\textwidth}{0.9\textheight}
+%	\begin{center}
+%	
+%	\begin{tikzpicture}[node distance = 0.3cm, auto]
+%		\only<1->{%
+%		\node [inner sep=0] (before) {\includegraphics[width=0.4\textwidth]{./images/per_base_quality_before}};
+%		\node [inner sep=0, right=2cm of before, align=left] (after) {\parbox{4cm}{%
+%			There is a drop of quality passing from the first bases of the sequence to the last ones due to pre-phasing and post-phasing erros}};	
+%		}
+%		\only<2->{%
+%		\node [inner sep=0, right=2cm of before] (after) {\includegraphics[width=0.4\textwidth]{./images/per_base_quality_after}};		
+%		\path [line] (before) -> (after);
+%		}		
+%	\end{tikzpicture}
+%	\end{center}
+%	\end{overlayarea}
+%\end{frame}
+
 \begin{frame}
-	
+	\textbf{\Large{DNA sequencing control}}
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			Chromatogram:
+			\includegraphics[width=\textwidth]{./images/dna_sequence.png}		
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			Quality:
+			\includegraphics[width=\textwidth]{./images/per_base_quality_before}
+		\end{column}		
+	\end{columns}
+	\begin{columns}
+		\begin{column}{0.35\textwidth}
+			\begin{align*}
+				Q &= Quality\\
+				P &= Error Probability\\
+				\\
+				Q &= -10 \, \log_{10} P\\
+				P &= 10^{-^{Q}/_{10}}\\
+			\end{align*}		
+		\end{column}
+		\begin{column}{0.65\textwidth}
+			\only<1>{%
+			\begin{block}{}
+				A quality value $Q$ is an integer representing the probability that the corresponding base call is incorrect ($P$).\\
+				Wrong bases may lead to the production of incorrect data.
+			\end{block}
+			}
+			\only<2>{%
+				\includegraphics[width=0.8\textwidth]{./images/Dont_panic}
+			}
+		\end{column}		
+	\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{tikzpicture}
+		\node (text) {\textbf{\Large{StreamingTrim 1.0}}};
+		\node [inner sep=0, right=2.2cm of text.south ,anchor=south west, align=left] (logo) {\includegraphics[width=0.56\textwidth]{./images/streamingtrim}};
+	\end{tikzpicture}
+	\vspace{5mm}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{center}
+				Dynamic Window Algorithm\\
+				\vspace{2mm}
+				\includegraphics[width=\textwidth]{./images/dynamic_pipeline_all}			
+			\end{center}			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\only<2->{%
+				\begin{tikzpicture}
+					\node [inner sep=0] (zscore) {\includegraphics[width=\textwidth]{./images/zscore}};
+					\node [draw=black, fill=white, below=0.3cm of zscore, rounded corners] (frm) {\tiny{%
+					$Z_{score} = \log_{10} \bigg( \frac{Quality\:improvement}{Length\:decrease} \bigg)$}};
+				\end{tikzpicture}
+				\vspace{-8mm}
+			}
+		\end{column}			
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{0.99\textheight}
+	\begin{block}{RDP Classifier}
+		\small{\textit{The RDP Classifier is a naive Bayesian classifier which was developed to provide rapid taxonomic placement based on rRNA sequence data. The RDP Classifier can rapidly and accurately classify bacterial and archaeal 16s rRNA sequences, and Fungal LSU sequences. It provides taxonomic assignments from domain to genus, with confidence estimates for each assignment.}\\
+		\hfill{[RDP staff]}}
+	\end{block}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\includegraphics[width=0.8\textwidth]{./images/rdp_percentages}	
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\only<2>{%
+				\includegraphics[width=0.9\textwidth]{./images/all_rdp}	
+			}
+			\only<3>{%
+				\includegraphics[width=\textwidth]{./images/genus_rdp}
+			}
+		\end{column}		
+	\end{columns}
+	\end{overlayarea}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 9
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{References}
