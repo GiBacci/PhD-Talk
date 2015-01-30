@@ -466,26 +466,6 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 7
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame}
-%	\tikzstyle{line} = [draw,thick, -latex']
-%	\begin{overlayarea}{\textwidth}{0.9\textheight}
-%	\begin{center}
-%	
-%	\begin{tikzpicture}[node distance = 0.3cm, auto]
-%		\only<1->{%
-%		\node [inner sep=0] (before) {\includegraphics[width=0.4\textwidth]{./images/per_base_quality_before}};
-%		\node [inner sep=0, right=2cm of before, align=left] (after) {\parbox{4cm}{%
-%			There is a drop of quality passing from the first bases of the sequence to the last ones due to pre-phasing and post-phasing erros}};	
-%		}
-%		\only<2->{%
-%		\node [inner sep=0, right=2cm of before] (after) {\includegraphics[width=0.4\textwidth]{./images/per_base_quality_after}};		
-%		\path [line] (before) -> (after);
-%		}		
-%	\end{tikzpicture}
-%	\end{center}
-%	\end{overlayarea}
-%\end{frame}
-
 \begin{frame}
 	\textbf{\Large{DNA sequencing control}}
 	\begin{columns}
@@ -512,7 +492,7 @@ CRA-RPS}
 			\only<1>{%
 			\begin{block}{}
 				A quality value $Q$ is an integer representing the probability that the corresponding base call is incorrect ($P$).\\
-				Wrong bases may lead to the production of incorrect data.
+				Wrong bases may lead to the production of incorrect data in downstream analyses.
 			\end{block}
 			}
 			\only<2>{%
@@ -529,30 +509,25 @@ CRA-RPS}
 %%% START - Slide 8
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+	\vspace{2mm}
+	\begin{overlayarea}{\textwidth}{0.9\textheight}
 	\begin{tikzpicture}
-		\node (text) {\textbf{\Large{StreamingTrim 1.0}}};
-		\node [inner sep=0, right=2.2cm of text.south ,anchor=south west, align=left] (logo) {\includegraphics[width=0.56\textwidth]{./images/streamingtrim}};
-	\end{tikzpicture}
-	\vspace{5mm}
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\begin{center}
-				Dynamic Window Algorithm\\
-				\vspace{2mm}
-				\includegraphics[width=\textwidth]{./images/dynamic_pipeline_all}			
-			\end{center}			
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			\only<2->{%
-				\begin{tikzpicture}
-					\node [inner sep=0] (zscore) {\includegraphics[width=\textwidth]{./images/zscore}};
-					\node [draw=black, fill=white, below=0.3cm of zscore, rounded corners] (frm) {\tiny{%
+		\node [inner sep=0] (logo) {\includegraphics[width=0.56\textwidth]{./images/streamingtrim}};
+		\node [right=0.6cm of logo.west, anchor=south west] (text) {\textbf{\Large{StreamingTrim 1.0}}};
+		\node [below=0.7cm of logo.south west, anchor=north west,align=left] (pipeline) {Dynamic Window Algorithm\\\includegraphics[width=0.5\textwidth]{./images/dynamic_pipeline_all}};
+		\only<1>{%
+			\node [right=0.5cm of pipeline, align=right] (explained) {\parbox{4cm}{%
+				The algorithm is able to retain as much biological information as possible using small amount of memory.
+			}};
+		}
+		\only<2->{%			
+			\node [right=0.2cm of logo.north east, anchor=north west] (assigned) {\includegraphics[width=0.39\textwidth]{./images/assigned}};
+			\node [inner sep=0, below=0.3cm of assigned] (zscore) {\includegraphics[width=0.43\textwidth]{./images/zscore}};
+			\node [draw=black, fill=white, below=0.3cm of zscore.south east, anchor=north east, rounded corners] (frm) {\tiny{%
 					$Z_{score} = \log_{10} \bigg( \frac{Quality\:improvement}{Length\:decrease} \bigg)$}};
-				\end{tikzpicture}
-				\vspace{-8mm}
-			}
-		\end{column}			
-	\end{columns}
+		}
+	\end{tikzpicture}
+	\end{overlayarea}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 8
@@ -563,27 +538,241 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\begin{overlayarea}{\textwidth}{0.99\textheight}
-	\begin{block}{RDP Classifier}
-		\small{\textit{The RDP Classifier is a naive Bayesian classifier which was developed to provide rapid taxonomic placement based on rRNA sequence data. The RDP Classifier can rapidly and accurately classify bacterial and archaeal 16s rRNA sequences, and Fungal LSU sequences. It provides taxonomic assignments from domain to genus, with confidence estimates for each assignment.}\\
-		\hfill{[RDP staff]}}
-	\end{block}
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\includegraphics[width=0.8\textwidth]{./images/rdp_percentages}	
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			\only<2>{%
-				\includegraphics[width=0.9\textwidth]{./images/all_rdp}	
+		\begin{tikzpicture}
+			\only<1>{%
+			\node [anchor=south west] (descript) at (0,0) {\begin{minipage}{0.97\textwidth}%
+ 								\begin{block}{RDP Classifier}%
+									\small{\textit{The RDP Classifier is a naive Bayesian classifier which was developed to provide rapid taxonomic placement based on rRNA sequence data. The RDP Classifier can rapidly and accurately classify bacterial and archaeal 16s rRNA sequences, and Fungal LSU sequences. It provides taxonomic assignments from domain to genus, with confidence estimates for each assignment.}\\
+									\hfill{[RDP staff]}}
+								 \end{block}
+							 \end{minipage}};						 
 			}
-			\only<3>{%
-				\includegraphics[width=\textwidth]{./images/genus_rdp}
+				
+			\node [inner sep=0, anchor=north west] at (0,-0.3) (rdpperc) {\includegraphics[width=0.4\textwidth]{./images/rdp_percentages}};
+			
+			\only<1>{%
+			\node [right=0.5cm of rdpperc] (textone) {\parbox{5.7cm}{
+				These results were obtained using simulated datasets \cite{wang2007naive}; but what about real ones?
+			}};	
 			}
-		\end{column}		
-	\end{columns}
+			
+			\only<2->{%
+			\node [anchor=south west, inner sep=0.37cm] (genrdp) {\includegraphics[width=0.45\textwidth]{./images/genus_rdp}};
+			\node [right=0.7cm of rdpperc.south east, anchor= south west] (allrdp) {\includegraphics[width=0.51\textwidth]{./images/all_rdp}};
+			\node [above=0.2cm of allrdp.north east, anchor=south east] (text) {\parbox{5.3cm}{
+				Real datasets display a lower rate of assignements than simulated ones at all taxonomic levels.
+			}}
+			};	  
+		\end{tikzpicture}
 	\end{overlayarea}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 9
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\textbf{\Large{Scientific Production:}}
+	\begin{itemize}
+		\item \textbf{Bacci, G.}, Bazzicalupo, M., Benedetti, A., \& Mengoni, A. (2014). StreamingTrim 1.0: a Java software for dynamic trimming of 16S rRNA sequence data from metagenetic studies. Molecular ecology resources, 14(2), 426-434.
+		\item \textbf{Bacci, G.}, Bani, A., Bazzicalupo, M., Ceccherini, M. T., Galardini, M., Nannipieri, P., ... \& Malcom, J. W. (2015). Evaluation of the Performances of Ribosomal Database Project (RDP) Classifier for Taxonomic Assignment of 16S rRNA Metabarcoding Sequences Generated from Illumina-Solexa NGS. Journal of Genomics, 3, 36-39.
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - SMALL TOOLS FOR BIG DATA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - BACTERIAL WORLD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bacterial World}
+\subsection{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\textbf{\Large{Bacteria-environment interaction}}
+	\begin{block}{}
+		Determining the effects of agricultural management, along with seasonal variations, on soil bacterial community through DGGE and soil biochemical properties.
+	\end{block}
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{./images/soilsink_env}	
+	\end{center}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			It is possible to define two clusters for each season, except for the cork-oak forest (CO) which forms two separated clusters.
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{tikzpicture}
+				\node [inner sep=0, anchor=south west] (heatmap) at (0,0) {\includegraphics[width=\textwidth]{./images/heatmap_soilsink}};
+				\begin{scope}[x={(heatmap.south east)},y={(heatmap.north west)}]
+				\only<2>{%
+				\draw [yellow, thick] (0.02, 0.571) rectangle (0.71, 0.88);
+				\draw [green, thick] (0.02,0.38) rectangle (0.71, 0.569);
+				}
+				\only<3->{%
+				\draw [blue, thick] (0.02,0.26) rectangle (0.71,0.38);
+				}
+				\end{scope}
+			\end{tikzpicture}
+		\end{column}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\vspace{3mm}
+	\begin{overlayarea}{\textwidth}{0.95\textheight}
+	\textbf{\Large{The pan-bacteriome model}}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{center}
+				\only<1>{\includegraphics[width=\textwidth]{./images/bacteriome/bacteriome_1}}
+				\only<2>{\includegraphics[width=\textwidth]{./images/bacteriome/bacteriome_2}}
+				\only<3->{\includegraphics[width=\textwidth]{./images/bacteriome/bacteriome_3}}				
+			\end{center}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+			\begin{itemize}
+				\item<1-> Considering all bacterial strains living in a particular environment
+				\item<2-> It is possible to classify them in different samples
+				\item<3-> And define a core and accessory bacteriome according to their presence/absence patterns in the collected samples
+			\end{itemize}
+		\end{column}
+	\end{columns}
+	\vspace{5mm}
+	\only<4->{%
+	\begin{block}{}
+		 Inspecting the dynamics able to shape bacterial communities in three soil mesocosms exposed to different environmental conditions through time using the 16S rRNA massive sequencing in combination with the pan-bacteriome approach.
+	\end{block}
+	}
+	\end{overlayarea}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\vspace{3mm}
+	\begin{overlayarea}{\textwidth}{0.95\textheight}	
+	\begin{tikzpicture}
+		\node<1-> [inner sep=0] (hetlab) {Bacterial community abundance};
+		\node<1-> [inner sep=0, below=0.1cm of hetlab.south west, anchor=north west] (heatmap) {\includegraphics[width=0.5\textwidth]{./images/bacteriome/Fig3}};
+		
+		\node<2-> [inner sep=0, right=1cm of heatmap] (venn) {\includegraphics[width=0.3\textwidth]{./images/bacteriome/Fig4}};
+		\path<2-> [->, draw, ultra thick] (heatmap) -- (venn);
+
+		\node<3-> [inner sep=0.2cm, below=0.4cm of heatmap.south west, anchor=north west] (heatmap2) {\includegraphics[width=0.45\textwidth]
+{./images/bacteriome/Fig5}};
+		\path<3-> [->, draw, ultra thick] (venn) to [out=190, in=45] (heatmap2);
+		
+		\node<4-> [inner sep=0.1cm, right=0.5cm of heatmap2.north east, anchor=north west] (composition) {\includegraphics[width=0.43\textwidth]
+{./images/bacteriome/Fig6}};
+		\path<4-> [->, draw, ultra thick] (heatmap2) -- (composition);
+		
+		\node<5-> [above left=0.3cm of composition.north, anchor=south east] {\begin{minipage}{6cm}
+			\begin{block}{}
+				Core and accessory bacteriomes have two distinct bacterial community in both high and low classification levels.
+			\end{block}
+		\end{minipage}
+		};
+	\end{tikzpicture}
+	\end{overlayarea}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START- Slide 14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\textbf{\Large{Analysis of bacterial communities}}
+	\vspace{5mm}
+	\begin{itemize}
+		\item Rhizosphere and bulk soil of a saline pond in Inner Mongolia (China)
+		\item A natural saline soil located in Sicily (Italy)
+		\item Along the beach gradient in three beaches of Favignana island (Italy)
+	\end{itemize}
+	\vspace{3mm}
+	\begin{block}{Aims}
+		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, entropy gradient and rhizosphere effects. In all studies the 16S rRNA massive sequencing has been applyed to deeply investigate changes in the composition of bacterial communities.
+	\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\vspace{2mm}
+	\begin{overlayarea}{\textwidth}{0.97\textheight}
+	\begin{tikzpicture}
+		\scriptsize{%
+		\node<1-> [inner sep=0] (rhizo) {\includegraphics[width=0.5\textwidth]{./images/bulk_rhizo}};
+		\node<1-> [right=0.3cm of rhizo] (txtrhizo) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Rhizosphere Vs Bulk}}
+				Bulk sediment samples grouped separately from rhizosphere samples, which clustered in distinctive couples.
+			\end{block}
+		\end{minipage}};
+		
+		\node<2-> [inner sep=0, below=0.2cm of txtrhizo] (salinity) {\includegraphics[width=0.45\textwidth]{./images/salinity}};
+		\node<2-> [left=0.3cm of salinity] (txtsalinity) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Salinity effect}}
+				High salinity samples and low salinity samples showed two distinct bacterial distributions.
+			\end{block}
+		\end{minipage}};
+		
+		\node<3-> [inner sep=0, below=0.2cm of txtsalinity] (favignana) {\includegraphics[width=0.45\textwidth]{./images/favignana}};
+		\node<3-> [right=0.3cm of favignana] (txtfavignana) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Beach gradient}}
+				It is possible to detect some abundance trends in bacterial Phyla following the beach gradient.
+			\end{block}
+		\end{minipage}};
+		}
+	\end{tikzpicture}	
+	\end{overlayarea}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\textbf{\Large{Scientific Production:}}
+	\footnotesize{%
+	\begin{itemize}
+		\item Bevivino, A., Paganin, P., \textbf{Bacci, G.}, Florio, A., Pellicer, M. S., Papaleo, M. C., ... \& Dalmastri, C. (2014). Soil Bacterial Community Response to Differences in Agricultural Management along with Seasonal Changes in a Mediterranean Region. PloS one, 9(8), e105515.
+		\item \textbf{Bacci, G.}, Ceccherini, M. T., Bani, A., Bazzicalupo, M., Castaldini, M., Galardini, M., ... \& Mengoni, A. (2015). Exploring the dynamics of bacterial community composition in soil: the pan-bacteriome approach. Antonie van Leeuwenhoek, 1-13.
+		\item Borruso, L., \textbf{Bacci, G.}, Mengoni, A., De Philippis, R., \& Brusetti, L. (2014). Rhizosphere effect and salinity competing to shape microbial communities in Phragmites australis (Cav.) Trin. ex-Steud. FEMS microbiology letters, 359(2), 193-200.
+		\item Canfora, L., \textbf{Bacci, G.}, Pinzari, F., Papa, G. L., Dazzi, C., \& Benedetti, A. (2014). Salinity and bacterial diversity: to what extent does the concentration of salt affect the bacterial community in a saline soil?. PloS one, 9(9), e106662.
+		\item \textbf{Bacci, G.}, Pagoto, E., Passaponti, M., Vannocci, P., Ugolini, A., \& Mengoni, A. (2014). Composition of supralittoral sediments bacterial communities in a Mediterranean island. Annals of Microbiology, 1-13.
+	\end{itemize}
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - BACTERIAL WORLD
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{References}
