@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+\usepackage{epstopdf}
 \usepackage{tikz}
 \usepackage{amsmath}
 \usetikzlibrary{shapes,arrows,positioning}
@@ -112,9 +113,9 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\begin{overlayarea}{1\textwidth}{0.9\textheight}
-	\only<1>{\begin{center}\includegraphics[width=0.7\textwidth]{./images/diversity/div-1.eps}\end{center}}
-	\only<2>{\begin{center}\includegraphics[width=0.7\textwidth]{./images/diversity/div-2.eps}\end{center}}
-	\only<3->{\begin{center}\includegraphics[width=0.7\textwidth]{./images/diversity/div-3.eps}\end{center}}
+	\only<1>{\begin{center}\includegraphics[width=0.7\textwidth]{./images/diversity/div-1}\end{center}}
+	\only<2>{\begin{center}\includegraphics[width=0.7\textwidth]{./images/diversity/div-2}\end{center}}
+	\only<3->{\begin{center}\includegraphics[width=0.7\textwidth]{./images/diversity/div-3}\end{center}}
 	\vspace{-2mm}
 	\only<4->{
 	\begin{block}{}	
@@ -595,6 +596,10 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 11
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifsseek
+\sseekfalse
+
+\ifsseek
 \begin{frame}
 	\textbf{\Large{Bacteria-environment interaction}}
 	\begin{block}{}
@@ -609,20 +614,18 @@ CRA-RPS}
 		\end{column}
 		\begin{column}{0.5\textwidth}
 			\begin{tikzpicture}
-				\node [inner sep=0, anchor=south west] (heatmap) at (0,0) {\includegraphics[width=\textwidth]{./images/heatmap_soilsink}};
+				\node<1-> [inner sep=0, anchor=south west] (heatmap) at (0,0) {\includegraphics[width=\textwidth]{./images/heatmap_soilsink}};
+				
 				\begin{scope}[x={(heatmap.south east)},y={(heatmap.north west)}]
-				\only<2>{%
-				\draw [yellow, thick] (0.02, 0.571) rectangle (0.71, 0.88);
-				\draw [green, thick] (0.02,0.38) rectangle (0.71, 0.569);
-				}
-				\only<3->{%
-				\draw [blue, thick] (0.02,0.26) rectangle (0.71,0.38);
-				}
+				\draw<2> [yellow, thick] (0.02, 0.571) rectangle (0.71, 0.88);
+				\draw<2> [green, thick] (0.02,0.38) rectangle (0.71, 0.569);
+				\draw<3> [blue, thick] (0.02,0.26) rectangle (0.71,0.38);
 				\end{scope}
 			\end{tikzpicture}
 		\end{column}
 	\end{columns}
 \end{frame}
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 11
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -666,29 +669,41 @@ CRA-RPS}
 %%% START - Slide 13
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\vspace{3mm}
-	\begin{overlayarea}{\textwidth}{0.95\textheight}	
+	\tikzstyle{line} = [draw, -latex']
+	\begin{overlayarea}{\textwidth}{0.99\textheight}
+	\vspace{2mm}
 	\begin{tikzpicture}
-		\node<1-> [inner sep=0] (hetlab) {Bacterial community abundance};
-		\node<1-> [inner sep=0, below=0.1cm of hetlab.south west, anchor=north west] (heatmap) {\includegraphics[width=0.5\textwidth]{./images/bacteriome/Fig3}};
+		\node<1-> [inner sep=0, anchor=north west] (heatmap) at (0,0) {\includegraphics[width=0.5\textwidth]{./images/bacteriome/Fig3}};
+		\node<1-> [inner sep=0, above, anchor=south west] (hetlab) at (heatmap.north west) {Bacterial community abundance};
 		
-		\node<2-> [inner sep=0, right=1cm of heatmap] (venn) {\includegraphics[width=0.3\textwidth]{./images/bacteriome/Fig4}};
-		\path<2-> [->, draw, ultra thick] (heatmap) -- (venn);
-
-		\node<3-> [inner sep=0.2cm, below=0.4cm of heatmap.south west, anchor=north west] (heatmap2) {\includegraphics[width=0.45\textwidth]
+		\node<2-> [inner sep=0, right=1cm of heatmap.east] (venn) {\includegraphics[width=0.28\textwidth]{./images/bacteriome/Fig4}};
+		\node<2-> [inner sep=0, above, anchor=south west] (vennlab) at (venn.north west) {Pseudo-Venn diagram};
+		\path<2-4> [line, thick] (heatmap) -- (venn);
+		
+		\node<3-> [inner sep=0.2cm, below=0.3cm of heatmap.south west, anchor=north west] (heatmaptwo) {\includegraphics[width=0.4\textwidth]
 {./images/bacteriome/Fig5}};
-		\path<3-> [->, draw, ultra thick] (venn) to [out=190, in=45] (heatmap2);
+		\path<3-4> [line, thick] (venn) to [out=190, in=45] (heatmaptwo);
+		\node<3-> [inner sep=0, below] (htwolab) at (heatmaptwo.south) {Comparing communities};
 		
-		\node<4-> [inner sep=0.1cm, right=0.5cm of heatmap2.north east, anchor=north west] (composition) {\includegraphics[width=0.43\textwidth]
+		\node<4-> [inner sep=0.5, right=0.6cm of heatmaptwo.south east, anchor=south west] (composition) {\includegraphics[width=0.43\textwidth]
 {./images/bacteriome/Fig6}};
-		\path<4-> [->, draw, ultra thick] (heatmap2) -- (composition);
+		\path<4> [line, thick] (heatmaptwo) -- (composition);
+		\node<4-> [inner sep=0, below] (complab) at (composition.south) {Genera composition};		
 		
-		\node<5-> [above left=0.3cm of composition.north, anchor=south east] {\begin{minipage}{6cm}
+		\draw<5-> [white, fill=white, fill opacity=.8] (0.01,-3.0) rectangle (10.1,0.31);
+		\node<5-> [inner sep=0,above=1cm of composition.north, anchor=south east] (textblock) {\begin{minipage}{6cm}
 			\begin{block}{}
-				Core and accessory bacteriomes have two distinct bacterial community in both high and low classification levels.
+				Core and accessory bacteriomes have two distinct bacterial community in both {\color{red} high} and {\color{blue} low} classification levels.
 			\end{block}
 		\end{minipage}
 		};
+		
+		%\draw[help lines] (0,0) grid (11,-8);
+		\draw<5-> [red, thick] (0.2,-7) rectangle (4.7,-3.5);
+		\draw<5-> [blue, thick] (5.2,-7) rectangle (10.1,-3.5);
+		
+		\path<5-> [line, red, thick] (textblock) to [out=195, in=90] (heatmaptwo);
+		\path<5-> [line, blue, thick] (textblock) to [out=212, in=90] (composition);		
 	\end{tikzpicture}
 	\end{overlayarea}
 \end{frame}
@@ -699,6 +714,25 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START- Slide 14
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifsoulseek
+\soulseektrue
+
+\ifsoulseek
+\begin{frame}
+	\textbf{\Large{Analysis of bacterial communities}}
+	\vspace{5mm}
+	\begin{itemize}
+		\item \alert{Agricultural management and seasonal variations (DGGE and soil biochemical properties)}
+		\item Rhizosphere and bulk soil of a saline pond in Inner Mongolia (China)
+		\item A natural saline soil located in Sicily (Italy)
+		\item Along the beach gradient in three beaches of Favignana island (Italy)
+	\end{itemize}
+	\vspace{3mm}
+	\begin{block}{Aims}
+		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, entropy gradient and rhizosphere effects. The 16S rRNA massive sequencing has been applyed in all studies (except for the first one) to deeply investigate changes in the composition of bacterial communities.
+	\end{block}
+\end{frame}
+\else
 \begin{frame}
 	\textbf{\Large{Analysis of bacterial communities}}
 	\vspace{5mm}
@@ -712,6 +746,7 @@ CRA-RPS}
 		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, entropy gradient and rhizosphere effects. In all studies the 16S rRNA massive sequencing has been applyed to deeply investigate changes in the composition of bacterial communities.
 	\end{block}
 \end{frame}
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 14
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -719,6 +754,72 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 15
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifsoulseek
+\begin{frame}
+	\vspace{8mm}
+	\begin{overlayarea}{\textwidth}{0.80\textheight}
+	\begin{tikzpicture}
+		\scriptsize{%
+		\node<1-> [anchor=south east] (txtsseek) at (0,0) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Menagement Vs Seasons}}
+				It is possible to define two clusters for each season, except for the cork-oak forest (CO) which forms two separated clusters.
+			\end{block}
+		\end{minipage}};
+		\node<1-> [inner sep=0, right=0.3cm of txtsseek.north east, anchor=north west] (sseek) {\includegraphics[width=0.47\textwidth]{./images/heatmap_soilsink}};
+		\begin{scope}[shift=(sseek.south west), x={(sseek.south east)},y={(sseek.north west)}]
+			\draw<2> [yellow, thick] (0.02, 0.571) rectangle (0.71, 0.88);
+			\draw<2> [green, thick] (0.02,0.38) rectangle (0.71, 0.569);
+			\draw<3-> [blue, thick] (0.02,0.26) rectangle (0.71,0.38);
+		\end{scope}
+				
+		\node<4-> [inner sep=0, below=1.2cm of txtsseek.south west, anchor=north west] (rhizo) {\includegraphics[width=0.5\textwidth]{./images/bulk_rhizo}};
+		\node<4-> [right=0.3cm of rhizo] (txtrhizo) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Rhizosphere Vs Bulk}}
+				Bulk sediment samples grouped separately from rhizosphere samples, which clustered in distinctive couples.
+			\end{block}
+		\end{minipage}};
+		\only<5>{
+		\begin{scope}[shift=(rhizo.south west), x={(rhizo.south east)},y={(rhizo.north west)}]
+			\draw [blue, thick, rotate around={-6:(0.2,0.57)}] (0.2,0.57) ellipse (0.35cm and 1.2cm);
+			\draw [green, thick, rotate around={8:(0.91,0.55)}] (0.91,0.55) ellipse (0.35cm and 0.2cm);
+		\end{scope}
+		}
+		}
+	\end{tikzpicture}	
+	\end{overlayarea}
+\end{frame}
+
+\begin{frame}
+	\vspace{6mm}
+	\begin{overlayarea}{\textwidth}{0.80\textheight}
+		\begin{tikzpicture}
+			\scriptsize{%
+				\node<1-> [inner sep=0] (salinity) {\includegraphics[width=0.45\textwidth]{./images/salinity}};
+				\node<1-> [left=0.3cm of salinity] (txtsalinity) {\begin{minipage}{0.45\textwidth}
+				\begin{block}{\scriptsize{Salinity effect}}
+					High salinity samples and low salinity samples showed two distinct bacterial distributions.
+				\end{block}
+				\end{minipage}};
+				\begin{scope}[shift=(salinity.south west), x={(salinity.south east)}, y={(salinity.north west)}]
+					\draw<2-> [red,->, thick] (0.0, 0.3) -- (0.0, 0.9);
+				\end{scope}
+				
+				\node<3-> [inner sep=0, below=0.8cm of txtsalinity] (favignana) {\includegraphics[width=0.45\textwidth]{./images/favignana}};
+				\node<3-> [right=0.3cm of favignana] (txtfavignana) {\begin{minipage}{0.45\textwidth}
+				\begin{block}{\scriptsize{Beach gradient}}
+					It is possible to detect some abundance trends in bacterial Phyla following the beach gradient.
+				\end{block}
+				\end{minipage}};
+				\only<4->{%
+				\begin{scope}[shift=(favignana.south west), x={(favignana.south east)}, y={(favignana.north west)}]
+					\draw [green,->, thick] (0.05, 0.0) -- (0.85, 0.0);
+				\end{scope}
+				}
+			}
+		\end{tikzpicture}
+	\end{overlayarea}
+\end{frame}
+\else
 \begin{frame}
 	\vspace{2mm}
 	\begin{overlayarea}{\textwidth}{0.97\textheight}
@@ -748,6 +849,7 @@ CRA-RPS}
 	\end{tikzpicture}	
 	\end{overlayarea}
 \end{frame}
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 15
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -773,6 +875,225 @@ CRA-RPS}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - BACTERIAL WORLD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - BACTERIAL LANDLORD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bacterial landlord}
+\subsection{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 17
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\textbf{\Large{Microbiome analysis with two different approaches:}}
+	\vspace{4mm}
+	\begin{itemize}
+		\item Low resolution approach using T-RFLP profiling
+		\begin{enumerate}
+			\item Analysis of bacterial communities associated with \textit{Talitrus saltator}
+			\item Analysis of lung bacterial communities in Cystic Fibrosis patients
+		\end{enumerate}
+		\item High resolution approach using 16S rRNA massive sequencing
+		\begin{enumerate}
+			\item Analysis of gut microbiota of talitrid amphipods
+			\item Analysis of the airway microbiota of Cystic Fibrosis patients
+		\end{enumerate}
+	\end{itemize}
+	\vspace{4mm}
+	\begin{block}{Aims}
+		Find a connection between the microbiota composition and different conditions of the hosts.
+	\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 17
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\vspace{8mm}
+	\begin{overlayarea}{\textwidth}{0.90\textheight}
+	\begin{tikzpicture}
+		\scriptsize{%
+		\node<1-> [anchor=south east] (pcatxt) at (0,0) {\begin{minipage}{0.4\textwidth}
+			\begin{block}{\scriptsize{Conditions Vs TRFs}}
+				Differential occurrence of some putative species like \textit{P. aeruginosa} and \textit{S. aureus}
+			\end{block}
+		\end{minipage}};
+		\node<1-> [inner sep=0, right=0.3cm of pcatxt.north east, anchor=north west] (pca) {\includegraphics[width=0.55\textwidth]{./images/pca_both}};
+						
+		\node<2-> [inner sep=0, below=1.2cm of pcatxt.south west, anchor=north west] (nmdstal) {\includegraphics[width=0.47\textwidth]{./images/nmds_talitri}};
+		\node<2-> [right=0.3cm of nmdstal] (txtnmdstal) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Different sampling sites}}
+				No strict clustering was observed based on different sampling sites
+			\end{block}
+		\end{minipage}};
+		}
+	\end{tikzpicture}	
+	\end{overlayarea}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 18
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\vspace{2mm}
+	\textbf{\Large{Correlation network approach}}
+	\vspace{1mm}
+	\pause
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{overlayarea}{\textwidth}{0.8\textheight}
+				\begin{center}
+				\only<2>{\includegraphics[width=0.8\textwidth]{./images/network_table_1}\\
+				\vspace{4mm}}
+				
+				\only<3>{\includegraphics[width=0.8\textwidth]{./images/network_table_1}\\
+				\vspace{4mm}
+				\includegraphics[width=0.8\textwidth]{./images/network_nodes_1}}	
+				
+				\only<4>{\includegraphics[width=0.8\textwidth]{./images/network_table_2}\\
+				\vspace{4mm}
+				\includegraphics[width=0.8\textwidth]{./images/network_nodes_1}}
+				
+				\only<5->{\includegraphics[width=0.8\textwidth]{./images/network_table_2}\\
+				\vspace{4mm}
+				\includegraphics[width=0.8\textwidth]{./images/network_nodes_2}}															
+				\end{center}
+			\end{overlayarea}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{overlayarea}{\textwidth}{0.8\textheight}
+				\begin{itemize}
+					\vspace{8mm}
+					\item<2-> In a dataset with 3 patients and 3 detected genera
+					\item<3-> It is possible to represent each genus as a node
+					\item<4-> If two genera show a positive correlation (their abundance patterns are similar)
+					\item<5-> It is possible to put a vertex (link) between the nodes representing the correlated genera	
+				\end{itemize}
+			\end{overlayarea}
+		\end{column}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 19
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 20
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\tikzstyle{stepnode} = [black, text=black, rectangle, draw, fill=white, rounded corners, text width=4cm, align=center]
+	\tikzstyle{line} = [draw, -latex']
+	\vspace{3mm}
+	\begin{overlayarea}{\textwidth}{0.95\textheight}	
+	\begin{tikzpicture}
+		\node [inner sep=0] (talnetwork) {\includegraphics[width=0.5\textwidth]{./images/networks/Figure_3_talkaled}}; 
+		\scriptsize{%
+		\node<2-> [stepnode, right=0.8cm of talnetwork.north east, anchor=north west] (stepone) {Generating correlation network comprehending  all \textit{Talitrus} species};
+		\node<3-> [stepnode, below=1cm of stepone] (steptwo) {Finding the most informative number of clusters through the ``intracluster clustering coefficient'' method};
+		\path<3-> [line] (stepone) -- (steptwo);
+		\node<4-> [stepnode, below=1cm of steptwo] (stepthree) {Using the ``Markov Cluster Algorithm'' to generate clusters};
+		\path<4-> [line] (steptwo) -- (stepthree);
+		}
+		\node<5-> [inner sep=0, below=0.5cm of stepthree] (nets) {\includegraphics[width=0.45\textwidth]{./images/networks/Suppl_Mat_Figure_S1}};
+	\end{tikzpicture}
+	\end{overlayarea}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 20
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 21
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{0.9\textheight}	
+	\begin{tikzpicture}
+		\scriptsize{%
+		\node<1-> [inner sep=0, anchor=south west] (abprev) {\includegraphics[width=0.5\textwidth]{./images/FC/Figure_2}};
+		\node<2-> [right=0.3cm of abprev.north east, anchor=north west] (txtabprev) {\begin{minipage}{0.4\textwidth}
+			\begin{block}{}
+				Despite its high variability it is possible to detect a more {\color{green} ``constant''} part of the community and a more {\color{red} scattered} one
+			\end{block}
+		\end{minipage}};
+		\only<2->{%
+		\begin{scope}[shift=(abprev.south west), x={(abprev.south east)}, y={(abprev.north west)}]
+			\draw [green, thick] (0.0,0.275) rectangle (0.8,0.88);
+			\draw [red, thick] (0.0,0.07) rectangle (0.8,0.27);
+		\end{scope}
+		}
+		\node<3-> [inner sep=0, below=0.1cm of txtabprev] (cca) {\includegraphics[width=0.38\textwidth]{./images/FC/Figure_4}};
+		\node<3-> [below=0.0cm of cca] (txtcca) {\begin{minipage}{0.4\textwidth}
+			\begin{block}{}
+				CCA analysis on OTU composition has shown that patients have different bacterial communities depending on their status
+			\end{block}
+		\end{minipage}};
+		}
+	\end{tikzpicture}
+	\end{overlayarea}	
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 22
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 23
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\tikzstyle{line} = [draw, -latex']
+	\begin{overlayarea}{\textwidth}{0.9\textheight}
+	\begin{tikzpicture}
+		\scriptsize{%
+		\node<1-> [inner sep=0] (network) {\includegraphics[width=0.6\textwidth]{./images/FC/Figure_5}};	
+		\node<2-> [right=0.2cm of network.north east, anchor=north west] (txtnetwork) {\begin{minipage}{0.35\textwidth}
+			\begin{block}{}
+				With the worsening of the disease patients show a less interconnected network with a lower number of nodes and a lower degree.
+			\end{block}
+		\end{minipage}};
+		
+		\node<3-> [inner sep=0, below=0.2cm of network] (model) {\includegraphics[width=0.4\textwidth]{./images/FC/Figure_6_16s}};
+		\path<3-> [line] (network) to [out=350, in=0] (model);
+		
+		\node<3-> [below=3cm of txtnetwork] (txtmodel) {\begin{minipage}{0.35\textwidth}
+			\begin{block}{}
+				A relatively complex community is present only in patients with low level of disease, then something happens paving the way for the lung colonization of pathological strains.
+			\end{block}
+		\end{minipage}};
+		}
+	\end{tikzpicture}
+	\end{overlayarea}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 23
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 24
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\textbf{\Large{Scientific Production:}}
+	\footnotesize{%
+	\begin{itemize}
+		\item Mengoni, A., Focardi, A., \textbf{Bacci, G.}, \& Ugolini, A. (2013). High genetic diversity and variability of bacterial communities associated with the sandhopper \textit{Talitrus saltator} (Montagu)(Crustacea, Amphipoda). \textit{Estuarine, Coastal and Shelf Science}, 131, 75-82.
+		\item \textbf{Bacci, G.}, Abdelrhman, K.F.A., Marras, B., Nistri, A., Schintu, M., Ugolini, A., \& Mengoni, A. The gut microbiota of talitrid amphipods provides insight into the ecology of supralittoral sediments detritivors. Manuscripts submitted to: \textit{FEMS Microbiology Ecology}.
+		\item Paganin, P., Fiscarelli, E.V., Tuccio, V., Chiancianesi, M., \textbf{Bacci, G.}, Morelli, P., Dolce, D., Dalmastri, C., De Alessandri, A., Lucidi, V., Taccetti, G., Mengoni, A., \& Bevivino, A. Changes in Cystic Fibrosis Airway Microbial Community Associated with a Severe Decline in Lung Function. Manuscripts submitted to: \textit{PloS one}.
+		\item \textbf{Bacci, G.}, Paganin, P., Lopez, L., Vanni, C., Dalmastri, C., Cantale, C., Daddiego, L., Perrotta, G., Taccetti, G., De Alessandri, A., Fiscarelli, E.E., Lucidi, V., Bevivino, A., \& Mengoni, A. Taxonomic signatures of CF airway microbiota distinguish between stable and severe declining patients. Manuscripts to be  submitted to: \textit{Proceedings of the National Academy of Sciences}
+	\end{itemize}
+	}
+\end{frame}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 24
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - BACTERIAL LANDLORD
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{References}
