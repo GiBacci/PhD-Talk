@@ -6,6 +6,7 @@
 \usepackage{epstopdf}
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{fixltx2e}
 \usetikzlibrary{shapes,arrows,positioning}
 \author{Giovanni Bacci}
 \title{Mining Microbiomes}
@@ -332,7 +333,7 @@ CRA-RPS}
 		%
 		\begin{column}{0.4\textwidth}
 			\normalsize{%
-			The ``NGS era'' has lead to a drastic increment of genome sequences available in public databases
+			The ``NGS era'' has led to a drastic increment of genome sequences available in public databases
 			}	
 		\end{column}		
 	\end{columns}
@@ -541,12 +542,13 @@ CRA-RPS}
 	\begin{overlayarea}{\textwidth}{0.99\textheight}
 		\begin{tikzpicture}
 			\only<1>{%
-			\node [anchor=south west] (descript) at (0,0) {\begin{minipage}{0.97\textwidth}%
- 								\begin{block}{RDP Classifier}%
-									\small{\textit{The RDP Classifier is a naive Bayesian classifier which was developed to provide rapid taxonomic placement based on rRNA sequence data. The RDP Classifier can rapidly and accurately classify bacterial and archaeal 16s rRNA sequences, and Fungal LSU sequences. It provides taxonomic assignments from domain to genus, with confidence estimates for each assignment.}\\
-									\hfill{[RDP staff]}}
-								 \end{block}
-							 \end{minipage}};						 
+			\node [anchor=south west] (descript) at (0,0) {
+				\begin{minipage}{0.97\textwidth}%
+ 				\begin{block}{RDP Classifier}%
+					\small{\textit{The RDP Classifier is a naive Bayesian classifier which was developed to provide rapid taxonomic placement based on rRNA sequence data. The RDP Classifier can rapidly and accurately classify bacterial and archaeal 16s rRNA sequences, and Fungal LSU sequences. It provides taxonomic assignments from domain to genus, with confidence estimates for each assignment.}\\
+				\hfill{[RDP staff]}}
+				\end{block}
+			 	\end{minipage}};						 
 			}
 				
 			\node [inner sep=0, anchor=north west] at (0,-0.3) (rdpperc) {\includegraphics[width=0.4\textwidth]{./images/rdp_percentages}};
@@ -578,7 +580,7 @@ CRA-RPS}
 	\textbf{\Large{Scientific Production:}}
 	\begin{itemize}
 		\item \textbf{Bacci, G.}, Bazzicalupo, M., Benedetti, A., \& Mengoni, A. (2014). StreamingTrim 1.0: a Java software for dynamic trimming of 16S rRNA sequence data from metagenetic studies. Molecular ecology resources, 14(2), 426-434.
-		\item \textbf{Bacci, G.}, Bani, A., Bazzicalupo, M., Ceccherini, M. T., Galardini, M., Nannipieri, P., ... \& Malcom, J. W. (2015). Evaluation of the Performances of Ribosomal Database Project (RDP) Classifier for Taxonomic Assignment of 16S rRNA Metabarcoding Sequences Generated from Illumina-Solexa NGS. Journal of Genomics, 3, 36-39.
+		\item \textbf{Bacci, G.}, Bani, A., Bazzicalupo, M., Ceccherini, M.T., Galardini, M., Nannipieri, P., Pietramellara, G., \& Mengoni, A. (2015). Evaluation of the performances of Ribosomal Database Project (RDP) Classifier for taxonomic assignment of 16S rRNA metabarcoding sequences generated from Illumina-Solexa NGS. \textit{Journal of Genomics}, 3, 36-39.
 	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -593,39 +595,38 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bacterial World}
 \subsection{}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% START - Slide 11
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newif\ifsseek
-\sseekfalse
 
-\ifsseek
-\begin{frame}
-	\textbf{\Large{Bacteria-environment interaction}}
-	\begin{block}{}
-		Determining the effects of agricultural management, along with seasonal variations, on soil bacterial community through DGGE and soil biochemical properties.
-	\end{block}
-	\begin{center}
-		\includegraphics[width=0.5\textwidth]{./images/soilsink_env}	
-	\end{center}
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			It is possible to define two clusters for each season, except for the cork-oak forest (CO) which forms two separated clusters.
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			\begin{tikzpicture}
-				\node<1-> [inner sep=0, anchor=south west] (heatmap) at (0,0) {\includegraphics[width=\textwidth]{./images/heatmap_soilsink}};
-				
-				\begin{scope}[x={(heatmap.south east)},y={(heatmap.north west)}]
-				\draw<2> [yellow, thick] (0.02, 0.571) rectangle (0.71, 0.88);
-				\draw<2> [green, thick] (0.02,0.38) rectangle (0.71, 0.569);
-				\draw<3> [blue, thick] (0.02,0.26) rectangle (0.71,0.38);
-				\end{scope}
-			\end{tikzpicture}
-		\end{column}
-	\end{columns}
-\end{frame}
-\fi
+\newif\iffondimod
+\fondimodtrue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 11 - REMOVED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\textbf{\Large{Bacteria-environment interaction}}
+%	\begin{block}{}
+%		Determining the effects of agricultural management, along with seasonal variations, on soil bacterial community through DGGE and soil biochemical properties.
+%	\end{block}
+%	\begin{center}
+%		\includegraphics[width=0.5\textwidth]{./images/soilsink_env}	
+%	\end{center}
+%	\begin{columns}
+%		\begin{column}{0.5\textwidth}
+%			It is possible to define two clusters for each season, except for the cork-oak forest (CO) which forms two separated clusters.
+%		\end{column}
+%		\begin{column}{0.5\textwidth}
+%			\begin{tikzpicture}
+%				\node<1-> [inner sep=0, anchor=south west] (heatmap) at (0,0) {\includegraphics[width=\textwidth]{./images/heatmap_soilsink}};
+%				
+%				\begin{scope}[x={(heatmap.south east)},y={(heatmap.north west)}]
+%				\draw<2> [yellow, thick] (0.02, 0.571) rectangle (0.71, 0.88);
+%				\draw<2> [green, thick] (0.02,0.38) rectangle (0.71, 0.569);
+%				\draw<3> [blue, thick] (0.02,0.26) rectangle (0.71,0.38);
+%				\end{scope}
+%			\end{tikzpicture}
+%		\end{column}
+%	\end{columns}
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 11
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -633,6 +634,46 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 12
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffondimod
+\begin{frame}
+	\vspace{3mm}
+	\begin{overlayarea}{\textwidth}{0.95\textheight}
+	\textbf{\Large{The pan-bacteriome model}}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{center}
+				\only<1>{\includegraphics[width=\textwidth]{./images/bacteriome/bacteriome_1}}
+				\only<2>{\includegraphics[width=\textwidth]{./images/bacteriome/bacteriome_2}}
+				\only<3->{\includegraphics[width=\textwidth]{./images/bacteriome/bacteriome_3}}				
+			\end{center}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+			\begin{itemize}
+				\item<1-3> Considering all bacterial strains living in a particular environment
+				\item<2-3> It is possible to classify them in different samples
+				\item<3> And define a core and accessory bacteriome according to their presence/absence patterns in the collected samples
+			\end{itemize}
+		\end{column}
+	\end{columns}
+	\vspace{5mm}
+	\only<4->{%
+	\begin{columns}
+		\begin{column}{0.64\textwidth}
+			\begin{block}{}
+			\scriptsize{%
+				 Inspecting the dynamics able to shape bacterial communities in three soil mesocosms exposed to different environmental conditions through time using the 16S rRNA massive sequencing in combination with the pan-bacteriome approach.
+			}
+			\end{block}
+		\end{column}
+		\begin{column}{0.36\textwidth}
+			\vskip -55mm
+			\includegraphics[width=\textwidth]{./images/pipeline_panbact}
+		\end{column}		
+	\end{columns}	
+	}
+	\end{overlayarea}
+\end{frame}
+\else
 \begin{frame}
 	\vspace{3mm}
 	\begin{overlayarea}{\textwidth}{0.95\textheight}
@@ -661,6 +702,8 @@ CRA-RPS}
 	}
 	\end{overlayarea}
 \end{frame}
+\fi
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 12
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -714,39 +757,44 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START- Slide 14
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newif\ifsoulseek
-\soulseektrue
+\begin{frame}
+	\textbf{\Large{Analysis of bacterial communities}}
+	\vspace{5mm}
+	
+	\begin{itemize}
+		\item Low-resolution approach using DGGE combined with soil biochemical properties
+		\begin{enumerate}
+			\item Agricultural management and seasonal variations in a Mediterranean region (Sardinia)
+		\end{enumerate}
+		\item High-resolution approach through 16S rRNA massive sequencing
+		\begin{enumerate}
+			\item Rhizosphere and bulk soil of a saline pond in Inner Mongolia (China)
+			\item A natural saline soil located in Sicily (Italy)
+			\item Along the beach gradient in three beaches of Favignana island (Italy)		
+		\end{enumerate}		
+	\end{itemize}
+	\vspace{3mm}
+	\begin{block}{Aims}
+		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, entropy gradient and rhizosphere effects.
+	\end{block}
+\end{frame}
 
-\ifsoulseek
-\begin{frame}
-	\textbf{\Large{Analysis of bacterial communities}}
-	\vspace{5mm}
-	\begin{itemize}
-		\item \alert{Agricultural management and seasonal variations (DGGE and soil biochemical properties)}
-		\item Rhizosphere and bulk soil of a saline pond in Inner Mongolia (China)
-		\item A natural saline soil located in Sicily (Italy)
-		\item Along the beach gradient in three beaches of Favignana island (Italy)
-	\end{itemize}
-	\vspace{3mm}
-	\begin{block}{Aims}
-		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, entropy gradient and rhizosphere effects. The 16S rRNA massive sequencing has been applyed in all studies (except for the first one) to deeply investigate changes in the composition of bacterial communities.
-	\end{block}
-\end{frame}
-\else
-\begin{frame}
-	\textbf{\Large{Analysis of bacterial communities}}
-	\vspace{5mm}
-	\begin{itemize}
-		\item Rhizosphere and bulk soil of a saline pond in Inner Mongolia (China)
-		\item A natural saline soil located in Sicily (Italy)
-		\item Along the beach gradient in three beaches of Favignana island (Italy)
-	\end{itemize}
-	\vspace{3mm}
-	\begin{block}{Aims}
-		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, entropy gradient and rhizosphere effects. In all studies the 16S rRNA massive sequencing has been applyed to deeply investigate changes in the composition of bacterial communities.
-	\end{block}
-\end{frame}
-\fi
+%%%%%%%%%% MODIFIED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\textbf{\Large{Analysis of bacterial communities}}
+%	\vspace{5mm}
+%	\begin{itemize}
+%		\item Rhizosphere and bulk soil of a saline pond in Inner Mongolia (China)
+%		\item A natural saline soil located in Sicily (Italy)
+%		\item Along the beach gradient in three beaches of Favignana island (Italy)
+%	\end{itemize}
+%	\vspace{3mm}
+%	\begin{block}{Aims}
+%		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, entropy gradient and rhizosphere effects. In all studies the 16S rRNA massive sequencing has been applyed to deeply investigate changes in the composition of bacterial communities.
+%	\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 14
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -754,7 +802,69 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 15
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifsoulseek
+
+\iffondimod
+\begin{frame}
+	\vspace{8mm}
+	\begin{overlayarea}{\textwidth}{0.80\textheight}
+	\begin{tikzpicture}
+		\scriptsize{%
+		\node [anchor=south east] (txtsseek) at (0,0) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Menagement Vs Seasons}}
+				It is possible to define two clusters for each season, except for the cork-oak forest (CO) which forms two separated clusters.
+			\end{block}
+		\end{minipage}};
+		\node [inner sep=0, right=0.3cm of txtsseek.north east, anchor=north west] (sseek) {\includegraphics[width=0.47\textwidth]{./images/heatmap_soilsink}};
+		\begin{scope}[shift=(sseek.south west), x={(sseek.south east)},y={(sseek.north west)}]
+			\draw [yellow, thick] (0.02, 0.571) rectangle (0.71, 0.88);
+			\draw [green, thick] (0.02,0.38) rectangle (0.71, 0.569);
+			\draw [blue, thick] (0.02,0.26) rectangle (0.71,0.38);
+		\end{scope}
+				
+		\node [inner sep=0, below=1.2cm of txtsseek.south west, anchor=north west] (rhizo) {\includegraphics[width=0.5\textwidth]{./images/bulk_rhizo}};
+		\node [right=0.3cm of rhizo] (txtrhizo) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Rhizosphere Vs Bulk}}
+				Bulk sediment samples grouped separately from rhizosphere samples, which clustered in distinctive couples.
+			\end{block}
+		\end{minipage}};
+		\begin{scope}[shift=(rhizo.south west), x={(rhizo.south east)},y={(rhizo.north west)}]
+			\draw [blue, thick, rotate around={-6:(0.2,0.57)}] (0.2,0.57) ellipse (0.35cm and 1.2cm);
+			\draw [green, thick, rotate around={8:(0.91,0.55)}] (0.91,0.55) ellipse (0.35cm and 0.2cm);
+		\end{scope}
+		}
+	\end{tikzpicture}	
+	\end{overlayarea}
+\end{frame}
+
+\begin{frame}
+	\vspace{6mm}
+	\begin{overlayarea}{\textwidth}{0.80\textheight}
+		\begin{tikzpicture}
+			\scriptsize{%
+				\node [inner sep=0] (salinity) {\includegraphics[width=0.45\textwidth]{./images/salinity}};
+				\node [left=0.3cm of salinity] (txtsalinity) {\begin{minipage}{0.45\textwidth}
+				\begin{block}{\scriptsize{Salinity effect}}
+					High salinity samples and low salinity samples showed two distinct bacterial distributions.
+				\end{block}
+				\end{minipage}};
+				\begin{scope}[shift=(salinity.south west), x={(salinity.south east)}, y={(salinity.north west)}]
+					\draw [red,->, thick] (0.0, 0.3) -- (0.0, 0.9);
+				\end{scope}
+				
+				\node [inner sep=0, below=0.8cm of txtsalinity] (favignana) {\includegraphics[width=0.45\textwidth]{./images/favignana}};
+				\node [right=0.3cm of favignana] (txtfavignana) {\begin{minipage}{0.45\textwidth}
+				\begin{block}{\scriptsize{Beach gradient}}
+					It is possible to detect some abundance trends in bacterial Phyla following the beach gradient.
+				\end{block}
+				\end{minipage}};
+				\begin{scope}[shift=(favignana.south west), x={(favignana.south east)}, y={(favignana.north west)}]
+					\draw [green,->, thick] (0.05, 0.0) -- (0.85, 0.0);
+				\end{scope}
+			}
+		\end{tikzpicture}
+	\end{overlayarea}
+\end{frame}
+\else
 \begin{frame}
 	\vspace{8mm}
 	\begin{overlayarea}{\textwidth}{0.80\textheight}
@@ -819,37 +929,40 @@ CRA-RPS}
 		\end{tikzpicture}
 	\end{overlayarea}
 \end{frame}
-\else
-\begin{frame}
-	\vspace{2mm}
-	\begin{overlayarea}{\textwidth}{0.97\textheight}
-	\begin{tikzpicture}
-		\scriptsize{%
-		\node<1-> [inner sep=0] (rhizo) {\includegraphics[width=0.5\textwidth]{./images/bulk_rhizo}};
-		\node<1-> [right=0.3cm of rhizo] (txtrhizo) {\begin{minipage}{0.45\textwidth}
-			\begin{block}{\scriptsize{Rhizosphere Vs Bulk}}
-				Bulk sediment samples grouped separately from rhizosphere samples, which clustered in distinctive couples.
-			\end{block}
-		\end{minipage}};
-		
-		\node<2-> [inner sep=0, below=0.2cm of txtrhizo] (salinity) {\includegraphics[width=0.45\textwidth]{./images/salinity}};
-		\node<2-> [left=0.3cm of salinity] (txtsalinity) {\begin{minipage}{0.45\textwidth}
-			\begin{block}{\scriptsize{Salinity effect}}
-				High salinity samples and low salinity samples showed two distinct bacterial distributions.
-			\end{block}
-		\end{minipage}};
-		
-		\node<3-> [inner sep=0, below=0.2cm of txtsalinity] (favignana) {\includegraphics[width=0.45\textwidth]{./images/favignana}};
-		\node<3-> [right=0.3cm of favignana] (txtfavignana) {\begin{minipage}{0.45\textwidth}
-			\begin{block}{\scriptsize{Beach gradient}}
-				It is possible to detect some abundance trends in bacterial Phyla following the beach gradient.
-			\end{block}
-		\end{minipage}};
-		}
-	\end{tikzpicture}	
-	\end{overlayarea}
-\end{frame}
 \fi
+
+%%%%%%%%%%%%%%%%%%% MODIFIED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%	\vspace{2mm}
+%	\begin{overlayarea}{\textwidth}{0.97\textheight}
+%	\begin{tikzpicture}
+%		\scriptsize{%
+%		\node<1-> [inner sep=0] (rhizo) {\includegraphics[width=0.5\textwidth]{./images/bulk_rhizo}};
+%		\node<1-> [right=0.3cm of rhizo] (txtrhizo) {\begin{minipage}{0.45\textwidth}
+%			\begin{block}{\scriptsize{Rhizosphere Vs Bulk}}
+%				Bulk sediment samples grouped separately from rhizosphere samples, which clustered in distinctive couples.
+%			\end{block}
+%		\end{minipage}};
+%		
+%		\node<2-> [inner sep=0, below=0.2cm of txtrhizo] (salinity) {\includegraphics[width=0.45\textwidth]{./images/salinity}};
+%		\node<2-> [left=0.3cm of salinity] (txtsalinity) {\begin{minipage}{0.45\textwidth}
+%			\begin{block}{\scriptsize{Salinity effect}}
+%				High salinity samples and low salinity samples showed two distinct bacterial distributions.
+%			\end{block}
+%		\end{minipage}};
+%		
+%		\node<3-> [inner sep=0, below=0.2cm of txtsalinity] (favignana) {\includegraphics[width=0.45\textwidth]{./images/favignana}};
+%		\node<3-> [right=0.3cm of favignana] (txtfavignana) {\begin{minipage}{0.45\textwidth}
+%			\begin{block}{\scriptsize{Beach gradient}}
+%				It is possible to detect some abundance trends in bacterial Phyla following the beach gradient.
+%			\end{block}
+%		\end{minipage}};
+%		}
+%	\end{tikzpicture}	
+%	\end{overlayarea}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 15
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -887,7 +1000,7 @@ CRA-RPS}
 %%% START - Slide 17
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\textbf{\Large{Microbiome analysis with two different approaches:}}
+	\textbf{\Large{Analysis of microbiomes}}
 	\vspace{4mm}
 	\begin{itemize}
 		\item Low resolution approach using T-RFLP profiling
@@ -913,6 +1026,38 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 18
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffondimod
+\begin{frame}
+	\vspace{8mm}
+	\begin{overlayarea}{\textwidth}{0.90\textheight}
+	\begin{tikzpicture}
+		\scriptsize{%
+		\node [anchor=south east] (pcatxt) at (0,0) {\begin{minipage}{0.4\textwidth}
+			\begin{block}{\scriptsize{Conditions Vs TRFs}}
+				Differential occurrence of some putative species like \textit{P. aeruginosa} and \textit{S. aureus}
+			\end{block}
+		\end{minipage}};
+		\node [inner sep=0, right=0.3cm of pcatxt.north east, anchor=north west] (pca) {\includegraphics[width=0.55\textwidth]{./images/pca_both}};
+		\begin{scope}[shift=(pca.south west), x={(pca.south east)}, y={(pca.north west)}]
+			%\draw [help lines,step=0.05] (0.0,0.0) grid (1.0,1.0);	
+			\draw [red] (0.1,0.76) ellipse (0.3cm and 0.1cm);
+			\draw [red] (0.09,0.47) ellipse (0.3cm and 0.1cm);
+			
+			\draw [red] (0.6,0.48) ellipse (0.3cm and 0.1cm);
+			\draw [red] (0.6,0.88) ellipse (0.3cm and 0.1cm);
+		\end{scope}
+		
+		\node [inner sep=0, below=1.2cm of pcatxt.south west, anchor=north west] (nmdstal) {\includegraphics[width=0.47\textwidth]{./images/nmds_talitri}};
+		\node [right=0.3cm of nmdstal] (txtnmdstal) {\begin{minipage}{0.45\textwidth}
+			\begin{block}{\scriptsize{Different sampling sites}}
+				No strict clustering was observed based on different sampling sites
+			\end{block}
+		\end{minipage}};
+		}
+	\end{tikzpicture}	
+	\end{overlayarea}
+\end{frame}
+\else
 \begin{frame}
 	\vspace{8mm}
 	\begin{overlayarea}{\textwidth}{0.90\textheight}
@@ -924,9 +1069,18 @@ CRA-RPS}
 			\end{block}
 		\end{minipage}};
 		\node<1-> [inner sep=0, right=0.3cm of pcatxt.north east, anchor=north west] (pca) {\includegraphics[width=0.55\textwidth]{./images/pca_both}};
-						
-		\node<2-> [inner sep=0, below=1.2cm of pcatxt.south west, anchor=north west] (nmdstal) {\includegraphics[width=0.47\textwidth]{./images/nmds_talitri}};
-		\node<2-> [right=0.3cm of nmdstal] (txtnmdstal) {\begin{minipage}{0.45\textwidth}
+		\only<2->{%
+		\begin{scope}[shift=(pca.south west), x={(pca.south east)}, y={(pca.north west)}]
+			%\draw [help lines,step=0.05] (0.0,0.0) grid (1.0,1.0);	
+			\draw [red] (0.1,0.76) ellipse (0.3cm and 0.1cm);
+			\draw [red] (0.09,0.47) ellipse (0.3cm and 0.1cm);
+			
+			\draw [red] (0.6,0.48) ellipse (0.3cm and 0.1cm);
+			\draw [red] (0.6,0.88) ellipse (0.3cm and 0.1cm);
+		\end{scope}
+		}
+		\node<3-> [inner sep=0, below=1.2cm of pcatxt.south west, anchor=north west] (nmdstal) {\includegraphics[width=0.47\textwidth]{./images/nmds_talitri}};
+		\node<3-> [right=0.3cm of nmdstal] (txtnmdstal) {\begin{minipage}{0.45\textwidth}
 			\begin{block}{\scriptsize{Different sampling sites}}
 				No strict clustering was observed based on different sampling sites
 			\end{block}
@@ -935,6 +1089,7 @@ CRA-RPS}
 	\end{tikzpicture}	
 	\end{overlayarea}
 \end{frame}
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% END - Slide 18
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -972,7 +1127,7 @@ CRA-RPS}
 			\begin{overlayarea}{\textwidth}{0.8\textheight}
 				\begin{itemize}
 					\vspace{8mm}
-					\item<2-> In a dataset with 3 patients and 3 detected genera
+					\item<2-> In a dataset with 3 samples and 3 detected genera
 					\item<3-> It is possible to represent each genus as a node
 					\item<4-> If two genera show a positive correlation (their abundance patterns are similar)
 					\item<5-> It is possible to put a vertex (link) between the nodes representing the correlated genera	
@@ -988,6 +1143,19 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 20
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffondimod
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.7\textwidth}
+			\includegraphics[width=\textwidth]{./images/talitri_maps}
+		\end{column}
+		\begin{column}{0.3\textwidth}
+			\textbf{Talitrid amphipods microbiome:}\\
+			Inspecting the gut microbiome of 5 species of talitrid amphipods in 7 distinct sites through Correlation Network analysis.
+		\end{column}
+	\end{columns}
+\end{frame}
+\fi
 \begin{frame}
 	\tikzstyle{stepnode} = [black, text=black, rectangle, draw, fill=white, rounded corners, text width=4cm, align=center]
 	\tikzstyle{line} = [draw, -latex']
@@ -996,13 +1164,13 @@ CRA-RPS}
 	\begin{tikzpicture}
 		\node [inner sep=0] (talnetwork) {\includegraphics[width=0.5\textwidth]{./images/networks/Figure_3_talkaled}}; 
 		\scriptsize{%
-		\node<2-> [stepnode, right=0.8cm of talnetwork.north east, anchor=north west] (stepone) {Generating correlation network comprehending  all \textit{Talitrus} species};
-		\node<3-> [stepnode, below=1cm of stepone] (steptwo) {Finding the most informative number of clusters through the ``intracluster clustering coefficient'' method};
-		\path<3-> [line] (stepone) -- (steptwo);
-		\node<4-> [stepnode, below=1cm of steptwo] (stepthree) {Using the ``Markov Cluster Algorithm'' to generate clusters};
-		\path<4-> [line] (steptwo) -- (stepthree);
+		\node<1-> [stepnode, right=0.8cm of talnetwork.north east, anchor=north west] (stepone) {Generating correlation network comprehending  all \textit{Talitrus} species};
+		\node<2-> [stepnode, below=1cm of stepone] (steptwo) {Finding the most informative number of clusters using ``Intra-Cluster Clustering Coefficient'' (ICCC)};
+		\path<2-> [line] (stepone) -- (steptwo);
+		\node<3-> [stepnode, below=1cm of steptwo] (stepthree) {Generating clusters through ``Markov Cluster Algorithm'' (MCL) \cite{van2001graph}};
+		\path<3-> [line] (steptwo) -- (stepthree);
 		}
-		\node<5-> [inner sep=0, below=0.5cm of stepthree] (nets) {\includegraphics[width=0.45\textwidth]{./images/networks/Suppl_Mat_Figure_S1}};
+		\node<4-> [inner sep=0, below=0.5cm of stepthree] (nets) {\includegraphics[width=0.45\textwidth]{./images/networks/Suppl_Mat_Figure_S1}};
 	\end{tikzpicture}
 	\end{overlayarea}	
 \end{frame}
@@ -1013,6 +1181,29 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% START - Slide 21
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffondimod
+\begin{frame}
+	\small{%
+	\begin{columns}
+		\begin{column}{0.4\textwidth}
+			\begin{center}
+				\includegraphics[width=\textwidth]{./images/pipeline_mod_1}
+			\end{center}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+			\begin{enumerate}
+				\item Patients were divided into 2 main groups and 3 sub-groups based on their rate decline in FEV\textsubscript{1}\% value per year and their FEV\textsubscript{1}\% values, respectively.
+				\item Bacterial DNA was extracted from sputum sample of all patients. 
+				\item 16S rRNA gene was amplified and sequenced using the Roche 454 GS FLX+ System (158107 sequences were generated with a mean length of 400bp).
+				\item Generated sequences were clustered into ``Operational Taxonomic Units'' (OTUs) with UPARSE choosing a single representative sequence for each OTU.
+				\item Representative sequences were taxonomically classified using SINA classifier.
+			\end{enumerate}
+		\end{column}
+	\end{columns}
+	}
+\end{frame}
+\fi
+
 \begin{frame}
 	\begin{overlayarea}{\textwidth}{0.9\textheight}	
 	\begin{tikzpicture}
@@ -1020,7 +1211,7 @@ CRA-RPS}
 		\node<1-> [inner sep=0, anchor=south west] (abprev) {\includegraphics[width=0.5\textwidth]{./images/FC/Figure_2}};
 		\node<2-> [right=0.3cm of abprev.north east, anchor=north west] (txtabprev) {\begin{minipage}{0.4\textwidth}
 			\begin{block}{}
-				Despite its high variability it is possible to detect a more {\color{green} ``constant''} part of the community and a more {\color{red} scattered} one
+				Despite the high variability it is possible to detect an almost ``{\color{green} constant}'' part of the community and a {\color{red} scattered} one.
 			\end{block}
 		\end{minipage}};
 		\only<2->{%
@@ -1032,7 +1223,7 @@ CRA-RPS}
 		\node<3-> [inner sep=0, below=0.1cm of txtabprev] (cca) {\includegraphics[width=0.38\textwidth]{./images/FC/Figure_4}};
 		\node<3-> [below=0.0cm of cca] (txtcca) {\begin{minipage}{0.4\textwidth}
 			\begin{block}{}
-				CCA analysis on OTU composition has shown that patients have different bacterial communities depending on their status
+				CCA analysis on OTU composition has shown that patients have different bacterial communities depending on their status.
 			\end{block}
 		\end{minipage}};
 		}
@@ -1059,7 +1250,7 @@ CRA-RPS}
 		\end{minipage}};
 		
 		\node<3-> [inner sep=0, below=0.2cm of network] (model) {\includegraphics[width=0.4\textwidth]{./images/FC/Figure_6_16s}};
-		\path<3-> [line] (network) to [out=350, in=0] (model);
+		\path<3-> [line, thick] (network) to [out=350, in=0] (model);
 		
 		\node<3-> [below=3cm of txtnetwork] (txtmodel) {\begin{minipage}{0.35\textwidth}
 			\begin{block}{}
@@ -1096,9 +1287,89 @@ CRA-RPS}
 %%% END - BACTERIAL LANDLORD
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - CONCLUSIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
 \subsection{}
-\begin{frame}[allowframebreaks] 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - Slide 25
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\textbf{\Large{Conclusions and future perspective}}
+	\small{%
+	\begin{itemize}
+		\item Metagenomics has emerged as a new discipline of biology fuelled by substantial technological advancements in DNA sequencing and analysis of produced data.
+		\item However, all these technological and conceptual advances have introduced new problems related to the analysis of metagenomic data.
+		\item  The increasing number of sequences generated from metagenomic studies is often difficult to handle using existing tools, not specifically designed for this purpose (e.g. the available database searching algorithms are very slow if used for metagenomic data).
+		\item   Developing statistical methods and software explicitly designed to cope with these problems is becoming mandatory for making a step forward in this novel discipline.
+	\end{itemize}
+	\pause
+	\begin{block}{}
+		While the technical aspects of metagenomics are now mainly devoted to company services which provide sequencing services, the bioinformatic skill is pivotal for data interpretation and study design.
+	\end{block}		
+	}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - Slide 25
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% END - CONCLUSIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% START - END STUFF
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{}
+\begin{frame}
+	\vspace{2mm}
+	{\huge\textbf{Thanks to:}}
+	\vspace{3mm}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			{\large\textbf{Dep. of Biology UniFi}}\\
+			Alessio Mengoni\\
+			Marco Bazzicalupo\\
+			Renato Fani\\
+			Alberto Ugolini\\
+			Alice Checcucci\\
+			Isabel Maida\\			
+			Francesco Vitali	\\
+			Elena Perrin\\	
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			{\large\textbf{COMBO Group}}\\
+			Marco Fondi\\
+			Marco Galardini\\
+			Emanuele Bosi\\
+			Luana Presta\\	
+			\vspace{2mm}
+			{\large\textbf{CRA-RPS}}\\
+			Anna Benedetti\\
+			\vspace{2mm}
+			{\large\textbf{ENEA}}\\
+			Annamaria Bevivino\\
+			Claudia Dalmastri\\
+		\end{column}
+	\end{columns}
+	\vspace{8mm}
+	\let\thefootnote\relax\large{... and all people I forgot to mention!}
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+		\textbf{\Large{Thank you for your attention!}}
+		\includegraphics[width=0.5\textwidth]{./images/computerneeded.png}	
+	\end{center}
+	\let\thefootnote\relax\small{\textbf{Contacts:}\\ Mail: giovanni.bacci@unifi.it \\ Twitter: @combogenomics}
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]
+	\vspace{2mm}
+	\textbf{\Large{References}}
+	\vspace{2mm}	
 	\tiny
 	\bibliography{References}
 \end{frame}
