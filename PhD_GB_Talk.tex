@@ -385,7 +385,7 @@ CRA-RPS}
     	\only<2->{%
 	% Other two nodes    	
     	\node [problems, below=1cm of problems, align=left, node distance=2cm] (metprob){%
-    		\textbf{Tecnical Problems:}\\
+    		\textbf{Technical Problems:}\\
     		\parbox{4cm}{%
 			\begin{itemize}
 			    \item[*] Handling huge data			    
@@ -775,7 +775,7 @@ CRA-RPS}
 	\end{itemize}
 	\vspace{3mm}
 	\begin{block}{Aims}
-		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, entropy gradient and rhizosphere effects.
+		Inspect differences in bacterial community composition in respect with environment characteristics like: salinity, beach gradient and rhizosphere effects.
 	\end{block}
 \end{frame}
 
@@ -1145,13 +1145,30 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \iffondimod
 \begin{frame}
+	\textbf{\Large{Talitrid amphipods microbiome}}
+	\vspace{5mm}
 	\begin{columns}
-		\begin{column}{0.7\textwidth}
+		\begin{column}{0.6\textwidth}
 			\includegraphics[width=\textwidth]{./images/talitri_maps}
 		\end{column}
-		\begin{column}{0.3\textwidth}
-			\textbf{Talitrid amphipods microbiome:}\\
-			Inspecting the gut microbiome of 5 species of talitrid amphipods in 7 distinct sites through Correlation Network analysis.
+		\begin{column}{0.4\textwidth}
+			\tikzstyle{pipetal} = [black, rectangle, draw, rounded corners, text width=3.5cm, text centered, font=\scriptsize]
+			\tikzstyle{line} = [draw, -latex']
+			\begin{tikzpicture}[node distance=1.4cm, auto]
+				\node[pipetal] (nodeone) {Collecting 12 pools of talitrid amphipods in 7 sites (5 different species)};
+				\node[pipetal, below of=nodeone] (nodetwo) {Etracting bacterial DNA from gut};
+				\node[pipetal, below of=nodetwo] (nodethree) {Selection and amplification of the V4 region of 16S rRNA gene through PCR};
+				\node[pipetal, below of=nodethree] (nodefour) {Sequencing of produced fragments};
+				\node[pipetal, below of=nodefour] (nodefive) {Clustering and Taxonomic annotation};
+				
+				\path[line] (nodeone) -- (nodetwo);
+				\path[line] (nodetwo) -- (nodethree);
+				\path[line] (nodethree) -- (nodefour);
+				\path[line] (nodefour) -- (nodefive);
+			\end{tikzpicture}
+%			\begin{block}{}
+%				Inspecting the gut microbiome of 5 species of talitrid amphipods in 7 distinct sites through Correlation Network analysis.			
+%			\end{block}
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -1183,21 +1200,37 @@ CRA-RPS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \iffondimod
 \begin{frame}
+	\vspace{2mm}
+	\textbf{\Large{Airway microbiome of CF patients}}
 	\small{%
 	\begin{columns}
-		\begin{column}{0.4\textwidth}
+		\begin{column}{0.5\textwidth}
 			\begin{center}
-				\includegraphics[width=\textwidth]{./images/pipeline_mod_1}
+				\includegraphics[width=0.8\textwidth]{./images/pipeline_mod_1}
 			\end{center}
 		\end{column}
-		\begin{column}{0.6\textwidth}
-			\begin{enumerate}
-				\item Patients were divided into 2 main groups and 3 sub-groups based on their rate decline in FEV\textsubscript{1}\% value per year and their FEV\textsubscript{1}\% values, respectively.
-				\item Bacterial DNA was extracted from sputum sample of all patients. 
-				\item 16S rRNA gene was amplified and sequenced using the Roche 454 GS FLX+ System (158107 sequences were generated with a mean length of 400bp).
-				\item Generated sequences were clustered into ``Operational Taxonomic Units'' (OTUs) with UPARSE choosing a single representative sequence for each OTU.
-				\item Representative sequences were taxonomically classified using SINA classifier.
-			\end{enumerate}
+		\begin{column}{0.5\textwidth}
+			\tikzstyle{pipefc} = [black, rectangle, draw, rounded corners, text width=3.5cm, text centered, font=\scriptsize]
+			\tikzstyle{line} = [draw, -latex']
+			\begin{tikzpicture}[node distance=1.4cm, auto]
+				\node[pipefc] (nodeone) {52 Patients enrolled and divided into 2 main groups and 3 sub groups based on their conditions};
+				\node[pipefc, below of=nodeone] (nodetwo) {Collecting sputum samples from each patient};
+				\node[pipefc, below of=nodetwo] (nodethree) {Selection and amplification of the V3, V4, and V5 regions of 16S rRNA gene through PCR};
+				\node[pipefc, below of=nodethree] (nodefour) {Sequencing of produced fragments};
+				\node[pipefc, below of=nodefour] (nodefive) {Clustering and Taxonomic annotation};
+				
+				\path[line] (nodeone) -- (nodetwo);
+				\path[line] (nodetwo) -- (nodethree);
+				\path[line] (nodethree) -- (nodefour);
+				\path[line] (nodefour) -- (nodefive);
+			\end{tikzpicture}
+%			\begin{enumerate}
+%				\item Patients were divided into 2 main groups and 3 sub-groups based on their rate decline in FEV\textsubscript{1}\% value per year and their FEV\textsubscript{1}\% values, respectively.
+%				\item Bacterial DNA was extracted from sputum sample of all patients. 
+%				\item 16S rRNA gene was amplified and sequenced using the Roche 454 GS FLX+ System (158107 sequences were generated with a mean length of 400bp).
+%				\item Generated sequences were clustered into ``Operational Taxonomic Units'' (OTUs) with UPARSE choosing a single representative sequence for each OTU.
+%				\item Representative sequences were taxonomically classified using SINA classifier.
+%			\end{enumerate}
 		\end{column}
 	\end{columns}
 	}
@@ -1297,12 +1330,14 @@ CRA-RPS}
 %%% START - Slide 25
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+	\vspace{2mm}
 	\textbf{\Large{Conclusions and future perspective}}
+	\vspace{2mm}	
 	\small{%
 	\begin{itemize}
 		\item Metagenomics has emerged as a new discipline of biology fuelled by substantial technological advancements in DNA sequencing and analysis of produced data.
-		\item However, all these technological and conceptual advances have introduced new problems related to the analysis of metagenomic data.
-		\item  The increasing number of sequences generated from metagenomic studies is often difficult to handle using existing tools, not specifically designed for this purpose (e.g. the available database searching algorithms are very slow if used for metagenomic data).
+		\item All these technological and conceptual advances have introduced new problems related to the analysis of produced data.
+%		\item  The huge number of sequences generated in metagenomic studies is often difficult to handle with existing tools, not specifically designed for this purpose (e.g. the available database searching algorithms are very slow if used for metagenomic data).
 		\item   Developing statistical methods and software explicitly designed to cope with these problems is becoming mandatory for making a step forward in this novel discipline.
 	\end{itemize}
 	\pause
@@ -1337,21 +1372,24 @@ CRA-RPS}
 			Alice Checcucci\\
 			Isabel Maida\\			
 			Francesco Vitali	\\
-			Elena Perrin\\	
+			Elena Perrin\\
+			\vspace{2mm}
+			{\large\textbf{ENEA}}\\
+			Annamaria Bevivino\\
 		\end{column}
 		\begin{column}{0.5\textwidth}
+			{\large\textbf{CRA-RPS}}\\
+			Anna Benedetti\\
+			\vspace{2mm}
 			{\large\textbf{COMBO Group}}\\
 			Marco Fondi\\
 			Marco Galardini\\
 			Emanuele Bosi\\
-			Luana Presta\\	
+			Luana Presta\\				
 			\vspace{2mm}
-			{\large\textbf{CRA-RPS}}\\
-			Anna Benedetti\\
-			\vspace{2mm}
-			{\large\textbf{ENEA}}\\
-			Annamaria Bevivino\\
-			Claudia Dalmastri\\
+			{\large\textbf{UniBz}}\\
+			Luigimaria Borruso\\
+			Lorenzo Brusetti
 		\end{column}
 	\end{columns}
 	\vspace{8mm}
@@ -1360,8 +1398,8 @@ CRA-RPS}
 
 \begin{frame}
 	\begin{center}
-		\textbf{\Large{Thank you for your attention!}}
-		\includegraphics[width=0.5\textwidth]{./images/computerneeded.png}	
+		{\huge\textbf{Thank you for your attention!}}
+		\includegraphics[width=0.55\textwidth]{./images/computerneeded.png}	
 	\end{center}
 	\let\thefootnote\relax\small{\textbf{Contacts:}\\ Mail: giovanni.bacci@unifi.it \\ Twitter: @combogenomics}
 \end{frame}
